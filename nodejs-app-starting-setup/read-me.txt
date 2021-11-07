@@ -39,14 +39,15 @@ as for image id
 
 Start a container in attached (foreground) mode
     docker start dazzling_edison
+
     docker attach dazzling_edison
     or
     docker start -a dazzling_edison
 
-Stop a container with his name
+Stop a container with its name
     docker stop naughty_ptolemy
 
-Stop a container with his id
+Stop a container with its id
     docker stop 1f4957997ee9
 
 ______________________________
@@ -147,4 +148,34 @@ With repository & tag
     docker run -p 3000:80 -d --rm --name goalApp goal:1.0
     docker stop goalApp
 
+______________________________
+
+PUSH IMAGES TO DOCKERHUB
+
+Login to DockerHub
+    docker login
+        vluc3
+        W..@...1
+
+Buid with new name
+    docker build -t vluc3/nodejs-app-starting-setup .
+Or rename (this do a clone)
+    docker tag goal:latest vluc3/nodejs-app-starting-setup:latest
+
+docker push vluc3/nodejs-app-starting-setup:latest
+
+______________________________
+
+PULL IMAGES FROM DOCKERHUB
+
+Remove
+    docker rmi -f vluc3/nodejs-app-starting-setup
+
+Pull
+    It is optional but not pulled if local image already exists
+    So it can be a problem if the version of the image on DockerHub is more recent
+    docker pull vluc3/nodejs-app-starting-setup:latest
+
+Run
+    docker run -p 3000:80 --rm vluc3/nodejs-app-starting-setup:latest
 

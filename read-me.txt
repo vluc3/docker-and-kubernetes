@@ -6,6 +6,18 @@ cd /home/vincent/Source/Private/course/udemy/docker-and-kubernetes
 
 _________________________________
 
+INSTALLATION
+
+Linux
+    https://docs.docker.com/engine/install/
+
+MacOS
+    https://docs.docker.com/desktop/mac/install/
+
+Windows
+    https://docs.docker.com/desktop/windows/install/
+
+______________________________
 
 PREBUILT IMAGES
 

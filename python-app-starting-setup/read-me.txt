@@ -1,0 +1,16 @@
+docker build .
+
+To be able to enter numbers,
+the container must be runned in interactive and TTY (terminal) mode
+    docker run -i -t b8f9498d9501
+    or
+    docker run -it b8f9498d9501
+
+Display last process
+    docker ps -l
+
+Start must be attached and in interactive mode,
+to be able to enter numbers
+TTY was already memorized when docker was runned
+    docker start -a -i thirsty_shamir
+    docker start -ai thirsty_shamir

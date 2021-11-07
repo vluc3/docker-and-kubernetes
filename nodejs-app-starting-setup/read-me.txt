@@ -1,0 +1,150 @@
+npm i
+sudo node server.js
+CTRL+C
+
+Delete
+    node_modules
+    package-lock.json
+
+Create
+    Dockerfile
+______________________________
+
+BUILD, RUN & STOP CONTAINER
+
+RUN execute the command when image is created
+CMD is like RUN but only when the image is launched by the container
+EXPOSE 80 is optional but good practise
+EXPOSE another port is required
+
+docker build .
+    Successfully built 0d960643ac92
+
+Publish image on port 3000 and run docker
+This create a new container
+It is running in attached (foreground) mode
+    docker run -p 3000:80 0d960643ac92
+
+docker ps
+docker stop dazzling_edison
+
+Start a container without recreating it, but in an non interactive mode
+It is running in detached (background) mode
+Console is not feed
+    docker start dazzling_edison
+
+Create and start a container in detached (background) mode
+as for image id
+    docker run -p 3000:80 -d 0d960643ac92
+
+Start a container in attached (foreground) mode
+    docker start dazzling_edison
+    docker attach dazzling_edison
+    or
+    docker start -a dazzling_edison
+
+Stop a container with his name
+    docker stop naughty_ptolemy
+
+Stop a container with his id
+    docker stop 1f4957997ee9
+
+______________________________
+
+REMOVE CONTAINER
+
+Remove by container names
+    docker rm dazzling_edison naughty_ptolemy
+
+Remove detached one when stopped
+    docker run -p 3000:80 -d --rm 0d960643ac92
+
+______________________________
+
+DISPLAY IMAGES
+
+docker images
+______________________________
+
+REMOVE IMAGES
+
+Remove by image id
+    docker rmi d1165f221234
+
+Remove by image id and force even it is used by a container
+    docker rmi -f d1165f221234
+
+Remove all without tag unused by a container
+    docker image prune
+
+Remove all with tag (or not) unused by a container
+    docker image prune -a
+
+______________________________
+
+INSPECT IMAGE
+
+docker image inspect 6ee36c0cbe53
+
+______________________________
+
+LOGS
+
+Logs a container in detached mode
+    docker logs dazzling_edison
+
+Follow (attach) logs of a container in detached mode
+    docker logs -f dazzling_edison
+    docker stop dazzling_edison
+
+______________________________
+
+MODIFICATION
+
+Do a modification in the code
+docker build .
+docker run -p 3000:80 a395b29cba58
+
+______________________________
+
+LAYERS
+
+Copy package.json first
+This uses cached layers
+This avoid npm install to be runned again if package.json was not changed
+    COPY package.json .
+    RUN npm install
+    COPY . .
+
+______________________________
+
+COPY FILES INTO OR OUT OF THE CONTAINER
+
+Copy content of project dummy folder into test folder in the container
+    docker cp dummy/. boring_chaum:/test
+
+Copy content of container test folder out to dummy project folder
+    docker cp boring_chaum:/test dummy
+
+______________________________
+
+NAMING CONTAINER
+
+docker run -p 3000:80 -d --rm --name goalApp 6ee36c0cbe53
+docker stop goalApp
+
+______________________________
+
+TAGGING IMAGE
+
+With repository only ("latest" will be the default tag)
+    docker build -t goal .
+    docker run -p 3000:80 -d --rm --name goalApp goal
+    docker stop goalApp
+
+With repository & tag
+    docker build -t goal:1.0 .
+    docker run -p 3000:80 -d --rm --name goalApp goal:1.0
+    docker stop goalApp
+
+

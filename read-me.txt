@@ -1,0 +1,33 @@
+git remote add origin https://github.com/vluc3/docker-and-kubernetes.git
+git branch -M main
+git push -u origin main
+
+cd /home/vincent/Source/Private/course/udemy/docker-and-kubernetes
+
+_________________________________
+
+
+PREBUILT IMAGES
+
+Download node
+    docker pull node
+    or
+    docker run node
+
+Display all processes
+    docker ps -a
+
+Display running processes
+    docker ps
+
+Display last process running or not
+    docker ps -l
+
+Expose an interactive session
+    docker run -it node
+    CTRL+C x 2
+
+Help
+    docker --help
+    docker ps --help
+    docker logs --help
